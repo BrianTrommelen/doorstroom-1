@@ -1,0 +1,57 @@
+@mixin generateFormTileListView($element) {
+  margin-bottom: 20 / 16 + rem;
+
+  #{$element}-title {
+    display: inline-block;
+    margin-top: 0.25rem;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      line-height: 1.2;
+    }
+  }
+
+  #{$element}-label {
+    align-items: center;
+    display: flex;
+    padding: 14px 20px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+
+    > svg {
+      display: inline-flex;
+      height: auto;
+      margin-right: 0.5rem;
+      margin-left: 0;
+      width: 50px;
+    }
+  }
+
+  #{$element}-description {
+    margin-left: 0.75rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    &.has-description {
+      #{$element}-label {
+        display: block;
+      }
+
+      #{$element}-description {
+        margin-left: 0;
+      }
+    }
+
+    &.has-description.has-image {
+      svg {
+        position: absolute;
+      }
+
+      #{$element}-title,
+      #{$element}-description {
+        margin-left: 4rem;
+      }
+    }
+  }
+}

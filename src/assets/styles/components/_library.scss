@@ -1,0 +1,36 @@
+.library {
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
+    overflow-y: scroll;
+
+    &__item {
+        &-divider {
+            &:not(:first-of-type) {
+                margin-top: 45px;
+            }
+
+            h6 {
+                font-weight: normal;
+                letter-spacing: 2px;
+                color: $gray;
+                text-transform: uppercase;
+            }
+        }
+
+        h5 {
+            color: $gray;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+            h5 {
+                color: $white;
+            }
+        }
+    }
+}

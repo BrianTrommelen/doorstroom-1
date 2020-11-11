@@ -1,0 +1,15 @@
+@import "sidebar";
+@import "window";
+@import "col";
+@import "row";
+
+.content {
+    [class*="content-col-"] {
+        padding: 0;
+    }
+
+
+    &__title {
+        margin-bottom: 50px;
+    }
+}

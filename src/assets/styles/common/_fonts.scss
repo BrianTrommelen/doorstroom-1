@@ -1,0 +1,53 @@
+//
+// Common: Fonts
+//
+// @author: lemone.com
+//
+
+$fontpath: "../fonts/";
+
+// Font definitions
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3680671, 2018-11-29T14:51:46-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed #{$fontpath}(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Sailec-Bold by Type Dynamic
+ * URL: https://www.myfonts.com/fonts/typedynamic/sailec/bold/
+ *
+ * Webfont: Sailec-Regular by Type Dynamic
+ * URL: https://www.myfonts.com/fonts/typedynamic/sailec/regular/
+ *
+ * Webfont: Sailec-RegularItalic by Type Dynamic
+ * URL: https://www.myfonts.com/fonts/typedynamic/sailec/regular-italic/
+ *
+ *
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3680671
+ * Licensed pageviews: 20,000
+ * #{$fontpath} copyright: Copyright &#x00A9; 2014 by Type Dynamic. All rights reserved.
+ *
+ * © 2018 MyFonts Inc
+*/
+
+/* @import must be at top of file, otherwise CSS will not work */
+//@import url('//hello.myfonts.net/count/38299f');
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: normal;
+  font-style: normal;
+  src: url("#{$fontpath}/Poppins-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-style: normal;
+  src: url("#{$fontpath}/Poppins-Bold.ttf") format("ttf");
+}
