@@ -1,0 +1,22 @@
+@import "info";
+
+.footer {
+    padding: 75px 0;
+
+    &__logo {
+        width: 40px;
+        height: 40px;
+
+        .fill {
+            fill: $white;
+        }
+    }
+
+    &__link {
+        &:hover {
+            .fill {
+                fill: $primary;
+            }
+        }
+    }
+}

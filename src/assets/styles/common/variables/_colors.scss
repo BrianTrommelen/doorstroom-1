@@ -16,14 +16,17 @@ $governor-bay: #2D46B9;
 $cornflower-blue: #509BF5;
 $golden-tainoi: #FFC864;
 
-$gradient-1: linear-gradient(0deg, rgb(29, 29, 29) 50%, rgba(68,67,67,1) 100%);
-
-$body-bg: $black;
-
 $theme-colors: (
   "primary": $malachite,
   "secondary": $governor-bay,
 );
+
+$gradient-1: linear-gradient(0deg, rgb(29, 29, 29) 85%, rgba(68,67,67,1) 100%);
+$gradient-2: linear-gradient(120deg, $governor-bay 25%, $malachite 100%);
+
+$body-bg: $black;
+
+
 
 $primary: $malachite;
 $secondary: $governor-bay;

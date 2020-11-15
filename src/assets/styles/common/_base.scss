@@ -12,3 +12,11 @@ html {
   -apple-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+* {
+  user-select: none; /* Standard */
+}
+
+img {
+  pointer-events: none;
+}

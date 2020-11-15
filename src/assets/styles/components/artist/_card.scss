@@ -1,0 +1,14 @@
+.artist-card {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+
+        .artist {
+            &__cover {
+                opacity: 0.3;
+            }
+        }
+    }
+}

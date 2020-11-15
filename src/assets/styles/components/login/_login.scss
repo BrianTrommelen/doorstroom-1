@@ -1,0 +1,15 @@
+@import "window";
+@import "section";
+@import "form";
+
+.login {
+    background-color: $cornflower-blue;
+    margin-bottom: 350px;
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: $black;
+    }
+}

@@ -1,4 +1,4 @@
-@import "sidebar";
+@import "sidebar/sidebar";
 @import "window";
 @import "col";
 @import "row";
@@ -11,5 +11,6 @@
 
     &__title {
         margin-bottom: 50px;
+        font-size: 50 /16 + rem;
     }
 }
