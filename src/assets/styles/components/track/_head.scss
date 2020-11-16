@@ -1,7 +1,14 @@
 .track-head {
     display: table-cell;
-    background-color: #eff3f6;
-    color: #7f8fa4;
-    font-size: 0.875rem;
+    color: $gray;
+    font-size: 12 / 16 + rem;
     text-align: left;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+
+    .track-thead &:first-of-type {
+        padding-left: 50px;
+    }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/styles/main.scss">
 </head>
 
-<body class="home">
+<body class="collection">
   <header class="header">
     <div class="container">
       <div class="row">
@@ -46,7 +46,7 @@
                 </a>
               </li>
               <li class="content-sidebar-nav__item">
-                <a href="#" class="content-sidebar-link">
+                <a href="/browse.html" class="content-sidebar-link">
                   <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408"><path d="M332 121.921H184.8l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H32.76c-18.132.132-32.76 14.868-32.76 33v214.04c.022 18.194 14.766 32.938 32.96 32.96H332c18.194-.022 32.938-14.766 32.96-32.96v-177.48c-.022-18.194-14.766-32.938-32.96-32.96z"/><path d="M375.24 79.281H228l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H76c-16.452.027-30.364 12.181-32.6 28.48h108.28c5.678-.014 11.069 2.492 14.72 6.84l25 29.72H332c26.005.044 47.076 21.115 47.12 47.12v167.52c16.488-2.057 28.867-16.064 28.88-32.68v-177.48c-.043-18.101-14.66-32.788-32.76-32.92z"/></svg>
                   Bladeren
                 </a>
@@ -78,7 +78,7 @@
                 </a>
               </li>
               <li class="library__item-divider">
-                <h6>Afspeellijsten</h6>
+                <h6>Albums</h6>
               </li>
               <li class="library__item">
                 <a href="#" class="library__link">
@@ -100,6 +100,23 @@
         </div>
         <div class="content-col-full">
           <div class="content-window">
+            <div class="album-window">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="album-information">
+                    <span class="album-information__subheading">Afspeellijst</span>
+                    <h1 class="album-information__heading">Butterflies</h1>
+                    <p class="album-information__text">Created by <strong>Boris Brechja</strong> <span>43 songs</span></p>
+                    <span><a href="#" class="btn btn-primary">Afspelen</a></span>
+                  </div>
+                </div>
+            </div>
+            </div>
             <div class="track-table">
               <div class="track-thead">
                 <div class="track-head">
@@ -123,9 +140,34 @@
                   </span>
                 </div>
               </div>
-              <div class="track-entry">
-
-              </div>
+              <a href="#track" class="track-entry">
+                <div class="track-item" id="track-name">
+                  Sometimes Things Get Complicated
+                </div>
+                <div class="track-item" id="track-artist">
+                  Boris brechja
+                </div>
+                <div class="track-item" id="track-album">
+                  Butterflies
+                </div>
+                <div class="track-item" id="track-name" id="track-date">
+                  2020-0-12
+                </div>
+              </a>
+              <a href="#track" class="track-entry">
+                <div class="track-item" id="track-name">
+                  Sometimes Things Get Complicated
+                </div>
+                <div class="track-item" id="track-artist">
+                  Boris brechja
+                </div>
+                <div class="track-item" id="track-album">
+                  Butterflies
+                </div>
+                <div class="track-item" id="track-name" id="track-date">
+                  2020-0-12
+                </div>
+              </a>
             </div>
           </div>
         </div>

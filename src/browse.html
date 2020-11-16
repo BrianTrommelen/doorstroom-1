@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/styles/main.scss">
 </head>
 
-<body class="home">
+<body class="browse">
   <header class="header">
     <div class="container">
       <div class="row">
@@ -40,13 +40,13 @@
           <aside class="content-sidebar">
             <ul class="content-sidebar-nav">
               <li class="content-sidebar-nav__item">
-                <a href="#" class="content-sidebar-link content-sidebar-link--active">
+                <a href="./" class="content-sidebar-link">
                   <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001"><path d="M503.402 228.885L273.684 19.567c-10.083-9.189-25.288-9.188-35.367-.001L8.598 228.886c-8.077 7.36-10.745 18.7-6.799 28.889 3.947 10.189 13.557 16.772 24.484 16.772h36.69v209.721c0 8.315 6.742 15.057 15.057 15.057h125.914c8.315 0 15.057-6.741 15.057-15.057V356.932h74.002v127.337c0 8.315 6.742 15.057 15.057 15.057h125.908c8.315 0 15.057-6.741 15.057-15.057V274.547h36.697c10.926 0 20.537-6.584 24.484-16.772 3.941-10.19 1.273-21.529-6.804-28.89zM445.092 42.73H343.973l116.176 105.636v-90.58c0-8.315-6.741-15.056-15.057-15.056z"/></svg>
                   Home
                 </a>
               </li>
               <li class="content-sidebar-nav__item">
-                <a href="/browse.html" class="content-sidebar-link">
+                <a href="/browse.html" class="content-sidebar-link content-sidebar-link--active">
                   <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408"><path d="M332 121.921H184.8l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H32.76c-18.132.132-32.76 14.868-32.76 33v214.04c.022 18.194 14.766 32.938 32.96 32.96H332c18.194-.022 32.938-14.766 32.96-32.96v-177.48c-.022-18.194-14.766-32.938-32.96-32.96z"/><path d="M375.24 79.281H228l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H76c-16.452.027-30.364 12.181-32.6 28.48h108.28c5.678-.014 11.069 2.492 14.72 6.84l25 29.72H332c26.005.044 47.076 21.115 47.12 47.12v167.52c16.488-2.057 28.867-16.064 28.88-32.68v-177.48c-.043-18.101-14.66-32.788-32.76-32.92z"/></svg>
                   Bladeren
                 </a>
@@ -100,82 +100,94 @@
         </div>
         <div class="content-col-full">
           <div class="content-window">
-            <h1 class="content__title">Home</h1>
+            <h1 class="content__title">Browse</h1>
 
-            <h4>Snelkoppelingen</h4>
+            <h4>Albums</h4>
             <hr>
-            <ul class="album-list">
-              <li class="album">
-                <a href="/musicCollection.html" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Space Diver</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html"  href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-2.jpg" alt="album-cover-1">
-                  <h5 class="album__title">22</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html"  href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-3.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Butterflies</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="artist-card">
-                  <img class="artist__cover" src="assets/images/boris-brejcha.jpg" alt="album-cover-1">
-                  <h5 class="artist__title">Boris Brejcha</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html"  href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-            </ul>
-            <h4>Onlangs toegevoegd</h4>
-            <hr>
-            <ul class="album-list">
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Space Diver</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-2.jpg" alt="album-cover-1">
-                  <h5 class="album__title">22</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-3.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Butterflies</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-            </ul>
+            <div class="browse-collection">
+              <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <a href="/musicCollection.html" class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

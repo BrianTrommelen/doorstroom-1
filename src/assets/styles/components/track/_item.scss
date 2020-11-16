@@ -1,0 +1,16 @@
+.track-item {
+    display: table-cell;
+    font-weight: bold;
+    font-size: 14 / 16 + rem;
+    color: $off-white;
+    border-top: 1px solid transparentize($color: $white, $amount: 0.8);
+    padding: 12px 0;
+
+    .track-entry &:first-of-type {
+        padding-left: 50px;
+    }
+
+    .track-entry:last-of-type & {
+        border-bottom: 1px solid transparentize($color: $white, $amount: 0.8);
+    }
+}
