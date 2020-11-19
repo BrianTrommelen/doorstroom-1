@@ -46,6 +46,10 @@
     &__link {
         text-decoration: none;
 
+        h5 {
+            @include text-ellipsis(1);
+        }
+
         &:hover {
             text-decoration: none;
             h5 {
