@@ -12,10 +12,6 @@
         @include media-breakpoint-up(xl) {
             font-size: 50px;
         }
-
-        a {
-            text-decoration: none;
-        }
     }
 
     &__subheading {
@@ -28,6 +24,7 @@
 
     &__text {
         color: $gray;
+        line-height: 20px;
 
         strong {
             color: $off-white;

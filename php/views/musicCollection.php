@@ -25,13 +25,12 @@
   $curr_item = str_replace('%20', ' ', $url_var);
 
   if($curr_object == "artist") {
-
+    $db_albums_from_artist = $dao->get_albums_from_artist($curr_item);
+    $db_artist = $dao->get_artist_by_name($curr_item);
   } elseif($curr_object == "album") {
     $db_album_from_curr = $dao->get_album_by_name($curr_item);
     $db_songs_from_curr = $dao->get_songs_from_album($curr_item);
   }
-
-  var_dump($curr_object);
 
   //Get the data
 
@@ -49,9 +48,6 @@
   // $db_songs = $dao->get_album_by_name('Space Diver');
   // $db_songs = $dao->get_artist_by_name('Boris Brejcha');
   // echo('<br>');
-  // foreach($db_songs_from_curr as $song) {
-  //   var_dump($song->name);
-  // }
 ?>
 
 <html lang="nl">
@@ -61,7 +57,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
     <meta name="description" content="The Music Player">
-    <link rel="stylesheet" href="/main.1fca67a1.css">
+    <link rel="stylesheet" href="/main.75b23d87.css">
 </head>
 
 <body class="collection">
@@ -141,75 +137,163 @@
         <div class="content-col-full">
           <div class="content-window">
             <?php if($curr_object == "album"): ?>
-            <div class="album-window">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="album-card">
-                    <img class="album__cover" src="/album-cover-1.1bfd9e89.jpg" alt="album-cover-1">
+              <div class="album-window">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="album-card">
+                      <img class="album__cover" src="<?php echo($db_album_from_curr->album_cover_url) ?>" alt="album-cover-1">
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="album-information">
+                      <span class="album-information__subheading">Afspeellijst</span>
+                      <h1 class="album-information__heading"><?php echo($db_album_from_curr->name) ?></h1>
+                      <p class="album-information__text">Van <a class="album__artist-link" href="/musicCollection.php?artist?<?php echo($db_album_from_curr->created_by->name) ?>"><strong><?php echo($db_album_from_curr->created_by->name) ?></strong></a></p>
+                      <p class="album-information__text"><?php echo($db_album_from_curr->release_date. " " .count($db_songs_from_curr)) ?> nummers</p>
+                      <!-- <span><a href="#" class="btn btn-primary">Afspelen</a></span> -->
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-9">
-                  <div class="album-information">
-                    <span class="album-information__subheading">Afspeellijst</span>
-                    <h1 class="album-information__heading">Butterflies</h1>
-                    <p class="album-information__text">Created by <strong>Boris Brechja</strong> <span>43 songs</span></p>
-                    <span><a href="#" class="btn btn-primary">Afspelen</a></span>
+              </div>
+              <div class="track-table">
+                <div class="track-thead">
+                <div class="track-head">
+                    <span class="track-head__title">
+                      #
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Titel
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Artiest
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Album
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Duur
+                    </span>
+                  </div>
+                </div>
+                <?php $i=1; foreach($db_songs_from_curr as $song): ?>
+                <div class="track-entry">
+                  <div class="track-item" id="track-name">
+                    <?php echo($i) ?>
+                  </div>
+                  <div class="track-item" id="track-name">
+                    <?php echo($song->name) ?>
+                  </div>
+                  <div class="track-item" id="track-artist">
+                  <a href="/musicCollection.php?artist?<?php echo($db_album_from_curr->created_by->name) ?>">
+                    <?php echo($song->artist->name) ?>
+                  </a>
+                  </div>
+                  <div class="track-item" id="track-album">
+                  <?php echo($db_album_from_curr->name) ?>
+                  </div>
+                  <div class="track-item" id="track-duration">
+                    <?php echo str_replace('m', ':', ltrim(gmdate("i\ms", $song->duration), '0')); ?>
+                  </div>
+                </div>
+              <?php $i++; endforeach; ?>
+            </div>
+            <?php elseif($curr_object == "artist"): ?>
+              <div class="artist-window">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="artist-card">
+                      <img class="artist__cover" src="<?php echo($db_artist->avatar) ?>" alt="album-cover-1">
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="artist-information">
+                      <span class="artist-information__subheading">Artiest</span>
+                      <h1 class="artist-information__heading"><?php echo($db_artist->name) ?></h1>
+                      <p class="artist-information__text"><?php echo ($db_artist->bio) ?></p>
+                      <p class="artist-information__text"><?php echo($db_artist->age) ?> years old.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="track-table">
-              <div class="track-thead">
-                <div class="track-head">
-                  <span class="track-head__title">
-                    Titel
-                  </span>
-                </div>
-                <div class="track-head">
-                  <span class="track-head__title">
-                    Artiest
-                  </span>
-                </div>
-                <div class="track-head">
-                  <span class="track-head__title">
-                    Album
-                  </span>
-                </div>
-                <div class="track-head">
-                  <span class="track-head__title">
-                    Datum
-                  </span>
+              <hr>
+              <h3>Nieuwste release</h3>
+              <?php foreach($db_albums_from_artist as $album): ?>
+              <?php $songs_from_album = $dao->get_songs_from_album($album->name);?>
+              <div class="album-window">
+                <div class="row">
+                  <div class="col-md-3">
+                    <a href="/musicCollection.php?album?<?php echo($album->name) ?>"  class="album-card">
+                      <img class="album__cover" src="<?php echo($album->album_cover_url) ?>" alt="album-cover-1">
+                    </a>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="album-information">
+                      <span class="album-information__subheading">Afspeellijst</span>
+                      <h1 class="album-information__heading"><a href="/musicCollection.php?album?<?php echo($album->name) ?>"><?php echo($album->name) ?></a></h1>
+                      <p class="album-information__text"><?php echo($album->release_date. " " .count($songs_from_album)) ?> nummers</p>
+                      <!-- <span><a href="#" class="btn btn-primary">Afspelen</a></span> -->
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="track-entry">
-                <div class="track-item" id="track-name">
-                  Sometimes Things Get Complicated
+              <div class="track-table">
+                <div class="track-thead">
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      #
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Titel
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Artiest
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Album
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Duur
+                    </span>
+                  </div>
                 </div>
-                <div class="track-item" id="track-artist">
-                  Boris brechja
-                </div>
-                <div class="track-item" id="track-album">
-                  Butterflies
-                </div>
-                <div class="track-item" id="track-name">
-                  2020-0-12
-                </div>
+                <?php $i=1; foreach($songs_from_album as $song): ?>
+                  <div class="track-entry">
+                    <div class="track-item" id="track-name">
+                      <?php echo($i) ?>
+                    </div>
+                    <div class="track-item" id="track-name">
+                      <?php echo($song->name) ?>
+                    </div>
+                    <div class="track-item" id="track-artist">
+                      <?php echo($song->artist->name) ?>
+                    </div>
+                    <div class="track-item" id="track-album">
+                    <?php echo($album->name) ?>
+                    </div>
+                    <div class="track-item" id="track-duration">
+                      <?php echo str_replace('m', ':', ltrim(gmdate("i\ms", $song->duration), '0')); ?>
+                    </div>
+                  </div>
+                  
+                <?php $i++; endforeach; ?>
               </div>
-              <div class="track-entry">
-                <div class="track-item" id="track-name">
-                  Sometimes Things Get Complicated
-                </div>
-                <div class="track-item" id="track-artist">
-                  Boris brechja
-                </div>
-                <div class="track-item" id="track-album">
-                  Butterflies
-                </div>
-                <div class="track-item" id="track-name">
-                  2020-0-12
-                </div>
-              </div>
-            </div>
+            <?php endforeach; ?>
             <?php endif; ?>
           </div>
         </div>

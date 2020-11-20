@@ -4,4 +4,8 @@
     // margin: 0;
     display: flex;
     flex-direction: row;
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column;
+    }
 }

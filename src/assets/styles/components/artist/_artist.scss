@@ -1,4 +1,6 @@
 @import "card";
+@import "window";
+@import "information";
 
 .artist {
     &__cover {
@@ -19,5 +21,9 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+
+    &__link {
+        text-decoration: none;
     }
 }

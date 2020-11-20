@@ -60,6 +60,17 @@
             return $albums;
         }
 
+        public function get_albums_from_artist($artist) {
+            $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on artist.id = album.artist_id WHERE artist.name = '".$artist."' ORDER BY album.release_date DESC";
+            $rows = $this->database->getData($statement);
+
+            foreach($rows as $album) {
+                $albums[] = new Album($album['name'], $album['description'], $this->get_artist_by_name($album['artist_name']), $album['release_date'], $album['album_cover']); 
+            }
+            
+            return $albums;
+        }
+
         public function get_albums_by_random($ammount) {
             if($ammount == null) {
                 $ammount_str = '';
@@ -103,7 +114,7 @@
         }
 
         function get_album_by_name($name) {
-            $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on album.artist_id = album.artist_id WHERE album.name = '".$name."'";
+            $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on artist.id = album.artist_id WHERE album.name = '".$name."'";
             $row = $this->database->getData($statement);
             $album = new Album($row[0]['name'], $row[0]['description'], $this->get_artist_by_name($row[0]['artist_name']), $row[0]['release_date'], $row[0]['album_cover']);
             
