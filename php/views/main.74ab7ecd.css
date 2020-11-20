@@ -6795,6 +6795,7 @@ textarea.form-control {
 }
 .album-information__text {
   color: #8D8D8D;
+  line-height: 20px;
 }
 .album-information__text strong {
   color: #e7e7e7;
@@ -6924,34 +6925,34 @@ textarea.form-control {
   margin: 50px 0;
 }
 
-.album-information {
+.artist-information {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
-.album-information__heading {
+.artist-information__heading {
   font-weight: bold;
   color: #fff;
   margin-bottom: 20px;
 }
 @media (min-width: 1200px) {
-  .album-information__heading {
+  .artist-information__heading {
     font-size: 50px;
   }
 }
-.album-information__subheading {
+.artist-information__subheading {
   color: #e7e7e7;
   text-transform: uppercase;
   font-size: 0.875rem;
   font-weight: bold;
   margin-bottom: 15px;
 }
-.album-information__text {
+.artist-information__text {
   color: #8D8D8D;
   line-height: 20px;
 }
-.album-information__text strong {
+.artist-information__text strong {
   color: #e7e7e7;
   font-weight: normal;
 }

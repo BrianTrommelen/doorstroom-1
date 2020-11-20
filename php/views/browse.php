@@ -46,7 +46,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
     <meta name="description" content="The Music Player">
-    <link rel="stylesheet" href="/main.75b23d87.css">
+    <link rel="stylesheet" href="/main.74ab7ecd.css">
 </head>
 
 <body class="browse">
