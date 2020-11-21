@@ -1,7 +1,7 @@
 <?php
     namespace Musicplayer\Database;
 
-    class Database
+    class LoginDatabase
     {
         function __construct($pdo)
         {
@@ -13,12 +13,6 @@
             $query = $this->pdo->prepare($statement);
             $query->execute();
             return $query->fetchAll();
-        }
-
-        function executeQuery($statement)
-        {
-            $query = $this->pdo->prepare($statement);
-            $query->execute();
         }
     }
 ?>

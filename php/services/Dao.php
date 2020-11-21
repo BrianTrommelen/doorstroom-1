@@ -105,6 +105,29 @@
             return $albums;
         }
 
+        function get_song_by_name($name) {
+            $statement = "SELECT song.name, song.duration, song.genre, song.artist_id, artist.name AS artist_name, album.name AS album_name FROM song INNER JOIN artist ON artist.id = song.artist_id INNER JOIN album ON album.id = song.album_id WHERE song.name = '".$name."'";
+            $song = $this->database->getData($statement);
+            $song = new Song($song[0]['name'], $song[0]['duration'], $song[0]['genre'],  $this->get_artist_by_name($song[0]['artist_name']), $this->get_album_by_name($song[0]['album_name']));
+            
+            return $song;
+        }
+
+        function delete_song_by_name($name) {
+            $statement = "DELETE FROM `song` WHERE `song`.`name` = '".$name."'";
+            $this->database->executeQuery($statement);
+        }
+
+        function update_song_by_name($name, $changed_name, $changed_dur) {
+            $statement = "UPDATE `song` SET `name` = '". $changed_name ."', `duration` = '". $changed_dur ."' WHERE `song`.`name` = '".$name."'";
+            $this->database->executeQuery($statement);
+        }
+
+        function create_song($artist_id, $song_name, $duration, $album_id) {
+            $statement = "INSERT INTO `song` (`id`, `artist_id`, `name`, `duration`, `genre`, `album_id`) VALUES (NULL, '".$artist_id."', '".$song_name."', '".$duration."', NULL, '".$album_id."')";
+            $this->database->executeQuery($statement);
+        }
+
         function get_artist_by_name($name) {
             $statement = "SELECT * FROM artist WHERE name = '".$name."'";
             $row = $this->database->getData($statement);
@@ -113,12 +136,26 @@
             return $artist;
         }
 
+        function get_artist_id_by_name($name) {
+            $statement = "SELECT id FROM artist WHERE name = '".$name."'";
+            $row = $this->database->getData($statement);
+            
+            return $row[0]['id'];
+        }
+
         function get_album_by_name($name) {
             $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on artist.id = album.artist_id WHERE album.name = '".$name."'";
             $row = $this->database->getData($statement);
             $album = new Album($row[0]['name'], $row[0]['description'], $this->get_artist_by_name($row[0]['artist_name']), $row[0]['release_date'], $row[0]['album_cover']);
             
             return $album;
+        }
+
+        function get_album_id_by_name($name) {
+            $statement = "SELECT id FROM album WHERE name = '".$name."'";
+            $row = $this->database->getData($statement);
+            
+            return $row[0]['id'];
         }
     }
 ?>

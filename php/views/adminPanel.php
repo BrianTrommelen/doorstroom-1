@@ -14,38 +14,66 @@
 
   use MusicPlayer\Services\Dao;
 
+  if(!isset($_COOKIE["type"]))
+  {
+  header("location:login.php");
+  }
+
   $artists = array();
 
   $dao = new Dao($pdo);
-  
-  //Get the data
-  $db_albums = $dao->get_albums_by_release_order($args = 6);
-  $db_albums_rand = $dao->get_albums_by_random($args = 10);
-  $db_artists = $dao->get_artists();
 
-  //Create mixed array
-  $mixed_array = array_merge($db_albums_rand, $db_artists);
+  //Get Artist or Album from URL
+  $curr_url = $_SERVER['REQUEST_URI'];
+  $curr_object = array_slice(explode('?', rtrim($curr_url, '?')), -2)[0];
+  $url_var = array_slice(explode('?', rtrim($curr_url, '?')), -1)[0];
+  $curr_item = str_replace('%20', ' ', $url_var);
 
-  //Shuffle mixed array entries
-  shuffle($mixed_array);
-
-  //TO-DO DEBUG REMOVE
-
-  // $db_albums = $dao->get_albums();
-
-  // $db_songs = $dao->get_songs();
-
-  // $db_songs = $dao->get_album_by_name('Space Diver');
-  // $db_songs = $dao->get_artist_by_name('Boris Brejcha');
-
-
-  foreach($mixed_array as $item){
-    // var_dump($item->name);
+  if($curr_object == "artist") {
+    $db_albums_from_artist = $dao->get_albums_from_artist($curr_item);
+    $db_artist = $dao->get_artist_by_name($curr_item);
+  } elseif($curr_object == "album") {
+    $db_album_from_curr = $dao->get_album_by_name($curr_item);
+    $db_songs_from_curr = $dao->get_songs_from_album($curr_item);
+  } else {
+    $db_albums_rand = $dao->get_albums_by_random($args = NULL);
   }
 
-    
-?>
+  //Get the data
+  $db_artists = $dao->get_artists();
 
+  //Catch delete request
+  if(isset($_REQUEST['delete'])) {
+    $dao->delete_song_by_name($_POST['Song']);
+    header("Refresh:0");
+  }
+
+  //Catch form POSTS
+  if(isset($_POST['form'])){
+    switch ($_POST['form']) {
+        case "selected_song":
+          $selected_song = $dao->get_song_by_name($_POST['Song']);
+          break;
+
+        case "change_song":
+          $dao->update_song_by_name($_POST['selected_song'], $_POST['track_name'], $_POST['duration']);
+          header("Refresh:0");
+          break;
+
+        case "create_song":
+          $artist_id = $dao->get_artist_id_by_name($db_album_from_curr->created_by->name);
+          $album_id = $dao->get_album_id_by_name($db_album_from_curr->name);
+          $dao->create_song($artist_id, $_POST['track_name'], $_POST['duration'], $album_id);
+          header("Refresh:0");
+          break;
+
+        default:
+          eader("Refresh:0");
+    } 
+  } 
+
+
+?>
 
 <html lang="nl">
 
@@ -57,7 +85,7 @@
     <link rel="stylesheet" href="/main.14d423e2.css">
 </head>
 
-<body class="home">
+<body class="collection">
   <header class="header">
     <nav class="navbar navbar-expand-lg">
       <div class="navbar-collapse">
@@ -92,41 +120,20 @@
           <aside class="content-sidebar">
             <ul class="content-sidebar-nav">
               <li class="content-sidebar-nav__item">
-                <a href="#" class="content-sidebar-link content-sidebar-link--active">
-                  <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001"><path d="M503.402 228.885L273.684 19.567c-10.083-9.189-25.288-9.188-35.367-.001L8.598 228.886c-8.077 7.36-10.745 18.7-6.799 28.889 3.947 10.189 13.557 16.772 24.484 16.772h36.69v209.721c0 8.315 6.742 15.057 15.057 15.057h125.914c8.315 0 15.057-6.741 15.057-15.057V356.932h74.002v127.337c0 8.315 6.742 15.057 15.057 15.057h125.908c8.315 0 15.057-6.741 15.057-15.057V274.547h36.697c10.926 0 20.537-6.584 24.484-16.772 3.941-10.19 1.273-21.529-6.804-28.89zM445.092 42.73H343.973l116.176 105.636v-90.58c0-8.315-6.741-15.056-15.057-15.056z"></path></svg>
-                  Home
-                </a>
-              </li>
-              <li class="content-sidebar-nav__item">
-                <a href="/browse.php" class="content-sidebar-link">
-                  <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408"><path d="M332 121.921H184.8l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H32.76c-18.132.132-32.76 14.868-32.76 33v214.04c.022 18.194 14.766 32.938 32.96 32.96H332c18.194-.022 32.938-14.766 32.96-32.96v-177.48c-.022-18.194-14.766-32.938-32.96-32.96z"></path><path d="M375.24 79.281H228l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H76c-16.452.027-30.364 12.181-32.6 28.48h108.28c5.678-.014 11.069 2.492 14.72 6.84l25 29.72H332c26.005.044 47.076 21.115 47.12 47.12v167.52c16.488-2.057 28.867-16.064 28.88-32.68v-177.48c-.043-18.101-14.66-32.788-32.76-32.92z"></path></svg>
+                <a href="/adminPanel.php" class="content-sidebar-link">
+                  <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408"><path d="M332 121.921H184.8l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H32.76c-18.132.132-32.76 14.868-32.76 33v214.04c.022 18.194 14.766 32.938 32.96 32.96H332c18.194-.022 32.938-14.766 32.96-32.96v-177.48c-.022-18.194-14.766-32.938-32.96-32.96z"/><path d="M375.24 79.281H228l-29.28-34.8c-.985-1.184-2.461-1.848-4-1.8H76c-16.452.027-30.364 12.181-32.6 28.48h108.28c5.678-.014 11.069 2.492 14.72 6.84l25 29.72H332c26.005.044 47.076 21.115 47.12 47.12v167.52c16.488-2.057 28.867-16.064 28.88-32.68v-177.48c-.043-18.101-14.66-32.788-32.76-32.92z"/></svg>
                   Bladeren
-                </a>
-              </li>
-              <li class="content-sidebar-nav__item">
-                <a href="#" class="content-sidebar-link">
-                  <svg class="content-sidebar-link__icon" height="512" viewBox="0 0 511.982 511.982" width="512" xmlns="http://www.w3.org/2000/svg"><path d="M255.991 169.039c-30.327 0-55 24.673-55 55 0 25.127 16.943 46.356 40 52.904v171.096c0 8.284 6.716 15 15 15s15-6.716 15-15V276.943c23.057-6.547 40-27.777 40-52.904 0-30.327-24.673-55-55-55zm0 80c-13.785 0-25-11.215-25-25s11.215-25 25-25 25 11.215 25 25-11.215 25-25 25zM186.597 143.845c-5.857-5.858-15.354-5.858-21.213 0-46.505 46.503-46.512 121.781 0 168.291 5.859 5.858 15.355 5.858 21.213 0 5.858-5.857 5.858-15.355 0-21.213-34.78-34.779-34.786-91.08 0-125.865 5.858-5.858 5.858-15.356 0-21.213zM346.597 143.845c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c34.701 34.701 34.701 91.164 0 125.865-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 46.399-46.397 46.399-121.894 0-168.291z"></path><path d="M141.342 119.803c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0-71.352 71.352-71.352 187.449 0 258.801 5.856 5.857 15.354 5.86 21.213 0 5.858-5.857 5.858-15.355 0-21.213-59.654-59.655-59.654-156.72 0-216.375zM391.852 98.59c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c59.654 59.655 59.654 156.72 0 216.375-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 71.352-71.352 71.352-187.449 0-258.801z"></path><path d="M96.087 74.548c5.858-5.857 5.858-15.355 0-21.213-5.857-5.857-15.355-5.857-21.213 0-99.941 99.94-99.724 249.587 0 349.311 5.856 5.857 15.354 5.86 21.213 0 5.858-5.857 5.858-15.355 0-21.213-87.475-87.477-87.475-219.408 0-306.885zM437.107 53.335c-5.857-5.857-15.355-5.857-21.213 0s-5.858 15.355 0 21.213c87.477 87.477 87.477 219.408 0 306.885-5.858 5.857-5.858 15.355 0 21.213 5.859 5.858 15.355 5.858 21.213 0 99.94-99.939 99.725-249.587 0-349.311z"></path></svg>                  Radio
                 </a>
               </li>
             </ul>
 
             <ul class="library">
               <li class="library__item-divider">
-                <h6>Bibliotheek</h6>
+                <h6>Artists</h6>
               </li>
               <?php foreach($db_artists as $artist): ?>
               <li class="library__item">
-                <a href="/musicCollection.php?artist?<?php echo($artist->name)?>" class="library__link">
-                  <h5><?php echo($artist->name)?></h5>
-                </a>
-              </li>
-              <?php endforeach; ?>
-              <li class="library__item-divider">
-                <h6>Albums</h6>
-              </li>
-              <?php foreach($db_albums as $artist): ?>
-              <li class="library__item">
-                <a href="/musicCollection.php?album?<?php echo($artist->name)?>" class="library__link">
+                <a href="/adminPanel.php?artist?<?php echo($artist->name)?>" class="library__link">
                   <h5><?php echo($artist->name)?></h5>
                 </a>
               </li>
@@ -136,35 +143,214 @@
         </div>
         <div class="content-col-full">
           <div class="content-window">
-            <h1 class="content__title">Home</h1>
+          <?php if($curr_object == "album"): ?>
+              <div class="album-window">
+                <div class="row">
+                  <div class="col-6 col-md-3">
+                    <div class="album-card">
+                      <img class="album__cover" src="<?php echo($db_album_from_curr->album_cover_url) ?>" alt="album-cover-1">
+                    </div>
+                  </div>
+                  <div class="col-6  col-md-9">
+                    <div class="album-information">
+                      <span class="album-information__subheading">Afspeellijst</span>
+                      <h1 class="album-information__heading"><?php echo($db_album_from_curr->name) ?></h1>
+                      <p class="album-information__text">Van <a class="album__artist-link" href="/adminPanel.php?artist?<?php echo($db_album_from_curr->created_by->name) ?>"><strong><?php echo($db_album_from_curr->created_by->name) ?></strong></a></p>
+                      <p class="album-information__text"><?php echo($db_album_from_curr->release_date. " " .count($db_songs_from_curr)) ?> nummers</p>
+                      <!-- <span><a href="#" class="btn btn-primary">Afspelen</a></span> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form action="" method="POST">
+                <div class="form-row">
+                  <div class="col">
+                  <select class="form-control" name="Song" id="selected_song" aria-label="song">
+                      <option default>Selecteer van album</option>
+                    <?php foreach($db_songs_from_curr as $song): ?>
+                      <option><?php echo($song->name) ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                  </div>
+                  <div class="col">
+                    <input type="hidden" name="form" value="selected_song">
+                    <input class="btn btn-primary" type="submit" value="Selecteren">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <button class="btn btn-danger btn-sm" type="submit" name="delete" value="delete">X</button>
+                  </div>
+                </div>
+              </form>
+              <?php if(isset($selected_song)): ?>
+              <form class="track-table" action="" method="POST">
+                <div class="track-thead">
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Titel
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Artiest
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Album
+                    </span>
+                  </div>
+                  <div class="track-head">
+                    <span class="track-head__title">
+                      Duur (in sec)
+                    </span>
+                  </div>
+                  <div class="track-head">
+                
+                  </div>
+                </div>
+                
+              <div class="track-entry">
+                <div class="track-item">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="track_name" id="track_name" aria-describedby="username" value="<?php echo($selected_song->name) ?>" aria-label="titel">
+                  </div> 
+                  </div>
+                  <div class="track-item">
+                    <?php echo($db_album_from_curr->created_by->name) ?>
+                  </div>
+                  <div class="track-item">
+                    <?php echo($db_album_from_curr->name) ?>
+                  </div>
+                  <div class="track-item">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="duration" id="duration" aria-label="duration" value="<?php echo($selected_song->duration) ?>">
+                    </div>
+                  </div>
+                  <div class="track-item">
+                    <input type="hidden" name="form" value="change_song">
+                    <input type="hidden" name="selected_song" value="<?php echo($selected_song->name) ?>">
+                    <button type="submit" value="change_song" class="btn btn-primary btn-sm">Wijzig</button>
+                  </div>
+                </div>
+              </form>
+                <?php endif; ?>
+                <!-- NEW TABLE -->
+                <br>
+                <h3>Nieuw:</h3>
+                <form class="track-table" action="" method="POST">
+                  <div class="track-thead">
+                    <div class="track-head">
+                      <span class="track-head__title">
+                        Titel
+                      </span>
+                    </div>
+                    <div class="track-head">
+                      <span class="track-head__title">
+                        Artiest
+                      </span>
+                    </div>
+                    <div class="track-head">
+                      <span class="track-head__title">
+                        Album
+                      </span>
+                    </div>
+                    <div class="track-head">
+                      <span class="track-head__title">
+                        Duur (in sec)
+                      </span>
+                    </div>
+                    <div class="track-head">
+                  
+                    </div>
+                  </div>
+                  <div class="track-entry">
+                  <div class="track-item">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="track_name" id="track_name" aria-describedby="username" value="Naam" aria-label="titel">
+                    </div>
+                    
+                  </div>
+                  <div class="track-item">
+                    <?php echo($db_album_from_curr->created_by->name) ?>
+                  </div>
+                  <div class="track-item">
+                    <?php echo($db_album_from_curr->name) ?>
+                  </div>
+                  <div class="track-item">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="duration" id="duration" aria-label="duration" value="000">
+                    </div>
+                  </div>
+                  <div class="track-item">
+                    <input type="hidden" name="form" value="create_song">
+                    <button type="submit" value="create_song" class="btn btn-primary btn-sm">Maak</button>
+                  </div>
+                </div>
+                </form>
+            
+              </div>
+              <?php elseif($curr_object == "artist"): ?>
+              <div class="artist-window">
+                <div class="row">
+                  <div class="col-6 col-md-3">
+                    <div class="artist-card">
+                      <img class="artist__cover" src="<?php echo($db_artist->avatar) ?>" alt="album-cover-1">
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-9">
+                    <div class="artist-information">
+                      <span class="artist-information__subheading">Artiest</span>
+                      <h1 class="artist-information__heading"><?php echo($db_artist->name) ?></h1>
+                      <p class="artist-information__text"><?php echo ($db_artist->bio) ?></p>
+                      <p class="artist-information__text"><?php echo($db_artist->age) ?> years old.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h3>Nieuwste release</h3>
+              <?php foreach($db_albums_from_artist as $album): ?>
+              <?php $songs_from_album = $dao->get_songs_from_album($album->name);?>
+              <div class="album-window">
+                <div class="row">
+                  <div class="col-6 col-md-3">
+                    <a href="/adminPanel.php?album?<?php echo($album->name) ?>"  class="album-card">
+                      <img class="album__cover" src="<?php echo($album->album_cover_url) ?>" alt="album-cover-1">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-9">
+                    <div class="album-information">
+                      <span class="album-information__subheading">Afspeellijst</span>
+                      <h1 class="album-information__heading"><a href="/adminPanel.php?album?<?php echo($album->name) ?>"><?php echo($album->name) ?></a></h1>
+                      <p class="album-information__text"><?php echo($album->release_date. " " .count($songs_from_album)) ?> nummers</p>
+                      <!-- <span><a href="#" class="btn btn-primary">Afspelen</a></span> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            <?php endforeach; ?>
+            <?php else: ?>
+              <h1 class="content__title">Browse</h1>
 
-            <h4>Uniek voor jou</h4>
+            <h4>Albums</h4>
             <hr>
-            <ul class="album-list">
-              <?php $i=0; foreach($mixed_array as $item): ?>
-                <?php if ($i >= 4) continue; ?>
-                <li class="album">
-                  <a href="/musicCollection.php<?php if(isset($item->avatar)): ?>?artist<?php else: ?>?album<?php endif; ?>?<?php echo($item->name)?>" class="<?php if(isset($item->avatar)): ?>artist-card <?php else: ?> album-card <?php endif; ?>">
-                    <img class="<?php if(isset($item->avatar)): ?>artist__cover <?php else: ?> album__cover <?php endif; ?>" src="<?php if(isset($item->avatar)){echo($item->avatar);} else {echo($item->album_cover_url);}?>" alt="album-cover-1">
-                    <h5 class="<?php if(isset($item->avatar)): ?>artist__title <?php else: ?> album__title <?php endif; ?>"><?php echo($item->name)?></h5>
-                  </a>
-                </li>
-              <?php $i++; endforeach; ?>
-            </ul>
-            <h4>Onlangs toegevoegd</h4>
-            <hr>
-            <ul class="album-list">
-            <?php $i=0; foreach($db_albums as $album): ?>
-            <!-- html -->
-            <?php if ($i >= 8) continue; ?>
-                <li class="album">
-                  <a href="/musicCollection.php?album?<?php echo($album->name)?>" class="album-card">
-                    <img class="album__cover" src="<?php echo($album->album_cover_url)?>" alt="album-cover-1">
-                    <h5 class="album__title"><?php echo($album->name)?></h5>
-                  </a>
-                </li>
-            <?php $i++; endforeach; ?>
-            </ul>
+            <div class="browse-collection">
+              <div class="row">
+                <?php foreach($db_albums_rand as $album): ?>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <a href="/adminPanel.php?album?<?php echo($album->name) ?>" class="album-card">
+                      <img class="album__cover" src="<?php echo($album->album_cover_url) ?>" alt="album-cover-1">
+                    </a>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          </div>
+            <?php endif; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -185,9 +371,7 @@
 
       <span class="copy">Music Player Inc &copy; 2020</span>
     </div>
-         
     <div style="opacity: 0.2;">Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </footer>
 </body>
-
 </html>

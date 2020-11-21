@@ -1,7 +1,9 @@
 @import "info";
 
 .footer {
-    padding: 75px 0;
+    max-width: 1600px;
+    margin: auto;
+    padding: 75px 30px;
 
     &__logo {
         width: 40px;

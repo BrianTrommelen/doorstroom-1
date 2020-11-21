@@ -1,5 +1,8 @@
 .header {
     background-color: $black;
+    max-width: 1600px;
+    margin: auto;
+    padding: 0 30px;
 
     &__logo {
         width: 50px;

@@ -6255,6 +6255,7 @@ textarea.form-control {
 
 .nav-link {
   font-weight: bold;
+  color: #8D8D8D;
 }
 
 .navbar {
@@ -6584,6 +6585,9 @@ textarea.form-control {
 
 .header {
   background-color: #000;
+  max-width: 1600px;
+  margin: auto;
+  padding: 0 30px;
 }
 .header__logo {
   width: 50px;
@@ -6723,8 +6727,8 @@ textarea.form-control {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
 }
 @media (max-width: 991.98px) {
   .content-col-side {
@@ -6738,8 +6742,8 @@ textarea.form-control {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  flex: 0 0 75%;
-  max-width: 75%;
+  flex: 0 0 83.3333333333%;
+  max-width: 83.3333333333%;
 }
 @media (max-width: 991.98px) {
   .content-col-full {
@@ -6759,6 +6763,10 @@ textarea.form-control {
   }
 }
 
+.content {
+  max-width: 1600px;
+  margin: auto;
+}
 .content [class*=content-col-] {
   padding: 0;
 }
@@ -6897,7 +6905,9 @@ textarea.form-control {
 }
 
 .footer {
-  padding: 75px 0;
+  max-width: 1600px;
+  margin: auto;
+  padding: 75px 30px;
 }
 .footer__logo {
   width: 40px;
@@ -7007,11 +7017,9 @@ textarea.form-control {
 
 .login {
   background-color: #2D46B9;
-  margin-bottom: 350px;
 }
 .login .footer {
-  position: absolute;
-  bottom: 0;
+  margin-top: 75px;
   width: 100%;
   background-color: #000;
 }
@@ -7076,12 +7084,29 @@ textarea.form-control {
 .track-entry .track-item:first-of-type {
   padding-left: 50px;
 }
+.track-entry .track-item:first-of-type .form-group {
+  margin: 0 15px 0 0;
+}
 .track-entry:last-of-type .track-item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .track-item a {
   color: #e7e7e7;
   text-decoration: none;
+}
+.track-item a:hover {
+  text-decoration: underline;
+}
+.track-item .form-group {
+  margin: 0 15px 0;
+}
+.track-item .form-group input {
+  color: #fff;
+  background-color: #282828;
+  border: 0;
+}
+.track-item .form-group input::placeholder {
+  color: #fff;
 }
 
 .browse-collection .album-card {

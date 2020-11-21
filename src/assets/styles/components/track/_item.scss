@@ -8,6 +8,10 @@
 
     .track-entry &:first-of-type {
         padding-left: 50px;
+
+        .form-group {
+            margin: 0 15px 0 0;
+        }
     }
 
     .track-entry:last-of-type & {
@@ -17,5 +21,23 @@
     a {
         color: $off-white;
         text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .form-group {
+        margin: 0 15px 0;
+
+        input {
+            color: $white;
+            background-color: $mine-shaft;
+            border: 0;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
     }
 }

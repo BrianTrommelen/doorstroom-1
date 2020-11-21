@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/styles/main.scss">
 </head>
 
-<body class="home">
+<body class="collection">
   <header class="header">
     <nav class="navbar navbar-expand-lg">
       <div class="navbar-collapse">
@@ -35,7 +35,7 @@
           <aside class="content-sidebar">
             <ul class="content-sidebar-nav">
               <li class="content-sidebar-nav__item">
-                <a href="#" class="content-sidebar-link content-sidebar-link--active">
+                <a href="#" class="content-sidebar-link">
                   <svg class="content-sidebar-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001"><path d="M503.402 228.885L273.684 19.567c-10.083-9.189-25.288-9.188-35.367-.001L8.598 228.886c-8.077 7.36-10.745 18.7-6.799 28.889 3.947 10.189 13.557 16.772 24.484 16.772h36.69v209.721c0 8.315 6.742 15.057 15.057 15.057h125.914c8.315 0 15.057-6.741 15.057-15.057V356.932h74.002v127.337c0 8.315 6.742 15.057 15.057 15.057h125.908c8.315 0 15.057-6.741 15.057-15.057V274.547h36.697c10.926 0 20.537-6.584 24.484-16.772 3.941-10.19 1.273-21.529-6.804-28.89zM445.092 42.73H343.973l116.176 105.636v-90.58c0-8.315-6.741-15.056-15.057-15.056z"/></svg>
                   Home
                 </a>
@@ -95,82 +95,99 @@
         </div>
         <div class="content-col-full">
           <div class="content-window">
-            <h1 class="content__title">Home</h1>
-
-            <h4>Snelkoppelingen</h4>
-            <hr>
-            <ul class="album-list">
-              <li class="album">
-                <a href="/musicCollection.html" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Space Diver</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-2.jpg" alt="album-cover-1">
-                  <h5 class="album__title">22</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-3.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Butterflies</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html" class="artist-card">
-                  <img class="artist__cover" src="assets/images/boris-brejcha.jpg" alt="album-cover-1">
-                  <h5 class="artist__title">Boris Brejcha</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="/musicCollection.html" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-            </ul>
-            <h4>Onlangs toegevoegd</h4>
-            <hr>
-            <ul class="album-list">
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Space Diver</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-2.jpg" alt="album-cover-1">
-                  <h5 class="album__title">22</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-3.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Butterflies</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-              <li class="album">
-                <a href="#" class="album-card">
-                  <img class="album__cover" src="assets/images/album-cover-4.jpg" alt="album-cover-1">
-                  <h5 class="album__title">Live Stream Mix (Mixed)</h5>
-                </a>
-              </li>
-            </ul>
+            <div class="album-window">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="album-card">
+                    <img class="album__cover" src="assets/images/album-cover-1.jpg" alt="album-cover-1">
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="album-information">
+                    <span class="album-information__subheading">Afspeellijst</span>
+                    <h1 class="album-information__heading">Butterflies</h1>
+                    <p class="album-information__text">Created by <strong>Boris Brechja</strong> <span>43 songs</span></p>
+                  </div>
+                </div>
+            </div>
+            </div>
+            <div class="track-table">
+              <div class="track-thead">
+                <div class="track-head">
+                  <span class="track-head__title">
+                    Titel
+                  </span>
+                </div>
+                <div class="track-head">
+                  <span class="track-head__title">
+                    Artiest
+                  </span>
+                </div>
+                <div class="track-head">
+                  <span class="track-head__title">
+                    Album
+                  </span>
+                </div>
+                <div class="track-head">
+                  <span class="track-head__title">
+                    Datum
+                  </span>
+                </div>
+                <div class="track-head">
+                </div>
+              </div>
+              <form class="track-entry" method="POST">
+                <div class="track-item">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="track_name" id="track_name" aria-describedby="track_name" value="<?php echo($selected_song->name) ?>" aria-label="titel">
+                  </div>
+                  
+                </div>
+                <div class="track-item">
+                  <a href="/musicCollection.html">
+                    Boris Brejcha
+                  </a>
+                </div>
+                <div class="track-item">
+                  Butterflies
+                </div>
+                <div class="track-item">
+                
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="duration" id="duration" aria-label="duur" value="<?php echo($selected_song->duration) ?>">
+                  </div>
+                </div>
+                <div class="track-item">
+                  <button type="submit" value="update" class="btn btn-primary btn-sm">Wijzig</button>
+                  <button type="submit" value="delete" class="btn btn-danger btn-sm">X</button>
+                </div>
+              </form>
+              <h3>Nieuw:</h3>
+              <div class="track-entry">
+                <div class="track-item">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="username" aria-describedby="username" value="Sometimes Things Get Complicated" aria-label="gebruikersnaam">
+                  </div>
+                  
+                </div>
+                <div class="track-item">
+                  <a href="/musicCollection.html">
+                    Boris Brejcha
+                  </a>
+                </div>
+                <div class="track-item">
+                  Butterflies
+                </div>
+                <div class="track-item">
+                
+                <div class="form-group">
+                  <input type="text" class="form-control" name="duration" id="duration" aria-label="duur" value="<?php echo($selected_song->duration) ?>">
+                </div>
+                <div class="track-item">
+                  <button type="submit" value="add" class="btn btn-primary btn-sm">Toevoegen</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
