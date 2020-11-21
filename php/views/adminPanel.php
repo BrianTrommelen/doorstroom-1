@@ -42,14 +42,11 @@
   //Get the data
   $db_artists = $dao->get_artists();
 
-  //Catch delete request
+  //Catch delete request & Catch form POSTS
   if(isset($_REQUEST['delete'])) {
     $dao->delete_song_by_name($_POST['Song']);
     header("Refresh:0");
-  }
-
-  //Catch form POSTS
-  if(isset($_POST['form'])){
+  } elseif(isset($_POST['form'])){
     switch ($_POST['form']) {
         case "selected_song":
           $selected_song = $dao->get_song_by_name($_POST['Song']);
@@ -63,15 +60,14 @@
         case "create_song":
           $artist_id = $dao->get_artist_id_by_name($db_album_from_curr->created_by->name);
           $album_id = $dao->get_album_id_by_name($db_album_from_curr->name);
-          $dao->create_song($artist_id, $_POST['track_name'], $_POST['duration'], $album_id);
+          $dao->create_song($artist_id, $_POST['track_name'], $_POST['duration_new'], $album_id);
           header("Refresh:0");
           break;
 
         default:
           eader("Refresh:0");
     } 
-  } 
-
+  }
 
 ?>
 
@@ -280,7 +276,7 @@
                   </div>
                   <div class="track-item">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="duration" id="duration" aria-label="duration" value="000">
+                      <input type="text" class="form-control" name="duration_new" id="duration_new" aria-label="duration" value="000">
                     </div>
                   </div>
                   <div class="track-item">
