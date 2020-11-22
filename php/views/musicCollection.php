@@ -7,7 +7,6 @@
 
   require_once('../services/Dao.php');
 
-
   use MusicPlayer\Classes\Artist;
   use MusicPlayer\Classes\Album;
   use MusicPlayer\Classes\Song;
@@ -36,18 +35,6 @@
 
   $db_albums = $dao->get_albums_by_release_order($args = 6);
   $db_artists = $dao->get_artists();
-
-  // var_dump($db_album_from_curr->name);
-
-  //TO-DO DEBUG REMOVE
-
-  // $db_albums = $dao->get_albums();
-
-  // $db_songs = $dao->get_songs();
-
-  // $db_songs = $dao->get_album_by_name('Space Diver');
-  // $db_songs = $dao->get_artist_by_name('Boris Brejcha');
-  // echo('<br>');
 ?>
 
 <html lang="nl">

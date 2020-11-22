@@ -71,14 +71,14 @@
             return $albums;
         }
 
-        public function get_albums_by_random($ammount) {
-            if($ammount == null) {
-                $ammount_str = '';
+        public function get_albums_by_random($amount) {
+            if($amount == null) {
+                $amount_str = '';
             } else {
-                $ammount_str = 'LIMIT '. $ammount;
+                $amount_str = 'LIMIT '. $amount;
             }
 
-            $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on artist.id = album.artist_id ORDER BY RAND() $ammount_str";
+            $statement = "SELECT album.name, album.description, artist.name AS artist_name, album.release_date, album.album_cover FROM album INNER JOIN artist on artist.id = album.artist_id ORDER BY RAND() $amount_str";
             $rows = $this->database->getData($statement);
 
             foreach($rows as $album) {

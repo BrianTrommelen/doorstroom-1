@@ -7,7 +7,6 @@
 
   require_once('../services/Dao.php');
 
-
   use MusicPlayer\Classes\Artist;
   use MusicPlayer\Classes\Album;
   use MusicPlayer\Classes\Song;

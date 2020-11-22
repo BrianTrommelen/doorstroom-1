@@ -7,7 +7,6 @@
 
   require_once('../services/Dao.php');
 
-
   use MusicPlayer\Classes\Artist;
   use MusicPlayer\Classes\Album;
   use MusicPlayer\Classes\Song;
@@ -27,23 +26,7 @@
   $mixed_array = array_merge($db_albums_rand, $db_artists);
 
   //Shuffle mixed array entries
-  shuffle($mixed_array);
-
-  //TO-DO DEBUG REMOVE
-
-  // $db_albums = $dao->get_albums();
-
-  // $db_songs = $dao->get_songs();
-
-  // $db_songs = $dao->get_album_by_name('Space Diver');
-  // $db_songs = $dao->get_artist_by_name('Boris Brejcha');
-
-
-  foreach($mixed_array as $item){
-    // var_dump($item->name);
-  }
-
-    
+  shuffle($mixed_array);  
 ?>
 
 
