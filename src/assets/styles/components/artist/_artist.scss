@@ -1,0 +1,29 @@
+@import "card";
+@import "window";
+@import "information";
+
+.artist {
+    &__cover {
+        padding: 15px;
+        width: 100%;
+        height: auto;
+        max-width: 250px;
+        max-height: 250px;
+        transition: opacity ease-in-out 0.2s;
+        border-radius: 50%;
+    }
+
+    &__title {
+        @include text-ellipsis(1);
+
+        text-align: center;
+        margin: 20px 0 0;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}

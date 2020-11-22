@@ -1,0 +1,17 @@
+.footer-info {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__title {
+        margin-left: 15px;
+        margin-bottom: 0;
+    }
+
+    .copy {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        flex-basis: 100%;
+    }
+}

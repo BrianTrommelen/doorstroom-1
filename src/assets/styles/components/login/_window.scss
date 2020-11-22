@@ -1,0 +1,13 @@
+.login-window {
+    margin-top: 100px;
+
+    &__title {
+        font-size: 85 / 16 + rem;
+        margin-bottom: 50px;
+        color: $primary;
+
+        @include media-breakpoint-down(lg) {
+            font-size: $h1-font-size;
+        }
+    }
+}

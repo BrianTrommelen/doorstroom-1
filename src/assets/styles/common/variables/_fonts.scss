@@ -1,0 +1,67 @@
+//
+// Common: variables: fonts
+//
+// @author: lemone.com
+//
+
+$font-family-base: "Poppins", sans-serif;
+
+$font-size-base: 1rem;
+$font-size-small: 14 / 16 + rem;
+
+$line-height-base: 1;
+$line-height-sm: 1.2;
+$line-height-lg: 1.5;
+
+$headings-margin-bottom: 1rem;
+$headings-line-height: 1.1;
+// $headings-font-family: "Gibson-SemiBold", serif;
+$headings-font-weight: bold;
+
+$link-decoration: underline;
+// $link-font-family: "Gibson-SemiBold", serif;
+
+// $headings-color: $dark-blue;
+// $body-color: $dark-blue;
+
+$display1-size: 90 / 16 + rem;
+
+$h1-font-size: 32 / 16 + rem;
+$h2-font-size: 28 / 16 + rem;
+$h3-font-size: 20 / 16 + rem;
+$h4-font-size: 18 / 16 + rem;
+$h5-font-size: 16 / 16 + rem;
+$h6-font-size: 14 / 16 + rem;
+
+$font-sizes-mobile: (
+  "h1": 24 / 16 + rem,
+  "h2": 22 / 16 + rem,
+  "h3": 20 / 16 + rem,
+  "h4": 16 / 16 + rem,
+  "h5": 16 / 16 + rem,
+  "h6": 14 / 16 + rem,
+  "s": 14 / 16 + rem,
+  "xs": 12 / 16 + rem,
+);
+
+@each $fontsize-m, $val in $font-sizes-mobile {
+  @include media-breakpoint-down(md) {
+    html {
+      @if $fontsize-m == s {
+        .font-size-#{$fontsize-m} {
+          font-size: $val;
+        }
+      } @else if $fontsize-m == xs {
+        .font-size-#{$fontsize-m} {
+          font-size: $val;
+        }
+      } @else {
+        #{$fontsize-m},
+        .#{$fontsize-m},
+        .#{$fontsize-m}-m {
+          font-size: $val;
+        }
+      }
+    }
+  }
+}

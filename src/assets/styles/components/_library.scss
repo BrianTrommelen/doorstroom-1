@@ -1,0 +1,60 @@
+.library {
+    padding: 0 30px;
+    margin: 0;
+    list-style-type: none;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.4);
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: $gray;
+        height: 25px;
+    }
+
+    &__item {
+        &-divider {
+            &:not(:first-of-type) {
+                margin-top: 45px;
+            }
+
+            h6 {
+                font-weight: normal;
+                letter-spacing: 2px;
+                color: $gray;
+                text-transform: uppercase;
+            }
+        }
+
+        h5 {
+            color: $gray;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+
+        h5 {
+            @include text-ellipsis(1);
+        }
+
+        &:hover {
+            text-decoration: none;
+            h5 {
+                color: $white;
+            }
+        }
+    }
+}

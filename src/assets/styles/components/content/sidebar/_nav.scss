@@ -1,0 +1,13 @@
+.content-sidebar-nav {
+    padding-left: 0;
+    margin-bottom: 25px;
+
+    &__item {
+        list-style: none;
+        font-weight: bold;
+
+        & + & {
+            margin-top: 20px;
+        }
+    }
+}

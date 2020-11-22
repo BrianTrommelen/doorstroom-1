@@ -1,0 +1,27 @@
+.track-entry {
+    display: table-row;
+    vertical-align: middle;
+    text-decoration: none;
+    transition: box-shadow ease-in-out 0.18s;
+    color: #7f8fa4;
+    text-align: left;
+    border-radius: 4px;
+
+    &:hover {
+        text-decoration: none;
+        background-color: transparentize($color: $gray, $amount: 0.8);
+
+         .track-item {
+             padding: 13px 0 12px;
+             border-top: none;
+         }
+
+         &:last-of-type {
+            .track-item {
+                padding-top: 13px;
+                padding-bottom: 13px;
+                border-bottom: none;
+            }
+         }
+    }
+}

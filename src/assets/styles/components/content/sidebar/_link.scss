@@ -1,0 +1,47 @@
+.content-sidebar-link {
+    position: relative;
+    padding: 3px 30px;
+    text-decoration: none;
+    color: $gray;
+    font-size: 17 / 16 + rem;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        text-decoration: none;
+
+        .content-sidebar-link {
+            &__icon {
+                fill: $white;
+            }
+        }
+    }
+
+    &__icon {
+        width: 25px;
+        height: 25px;
+        margin-top: -3px;
+        margin-right: 20px;
+        fill: $gray;
+    }
+
+    &--active {
+        color: $white;
+
+        .content-sidebar-link {
+            &__icon {
+                fill: $white;
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            height: 100%;
+            background-color: $primary;
+        }
+    }
+}

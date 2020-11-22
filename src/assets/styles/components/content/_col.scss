@@ -1,0 +1,19 @@
+.content-col {
+    &-side {
+        @include make-col-ready();
+        @include make-col(2);
+        @include media-breakpoint-down(md) {
+            @include make-col(12);
+            order: 2;
+        }
+    }
+    &-full {
+        @include make-col-ready();
+        @include make-col(10);
+        @include media-breakpoint-down(md) {
+            @include make-col(12);
+            order: 1;
+        }
+
+    }
+}

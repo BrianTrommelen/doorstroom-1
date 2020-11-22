@@ -1,0 +1,21 @@
+$custom-select-height: $input-height;
+$custom-select-color: $input-color;
+
+$custom-select-bg: url("data:image/svg+xml,%3Csvg height='12' viewBox='0 0 8 12' width='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m8 8.07927724-4 3.92072276-4-3.92072276zm-4-8.07927724 4 3.92072276h-8z' fill='%233d5372' fill-rule='evenodd'/%3E%3C/svg%3E") 8px 12px no-repeat, linear-gradient(0deg, #f2f4f7 0%, #ffffff 100%);
+$custom-select-background: center;
+
+$custom-control-indicator-focus-box-shadow: none;
+$custom-control-indicator-focus-border-color: inherit;
+// $custom-control-indicator-border-color: ;
+$custom-control-indicator-bg: transparent;
+$custom-control-indicator-size: 1.25rem;
+
+// $custom-control-indicator-checked-bg: ;
+// $custom-control-indicator-checked-border-color: ;
+
+$enable-shadows: false;
+$enable-validation-icons:  false;
+
+$custom-control-indicator-active-bg: $custom-control-indicator-checked-bg;
+$custom-control-indicator-active-border-color: $custom-control-indicator-checked-border-color;
+$custom-control-indicator-active-box-shadow: none;

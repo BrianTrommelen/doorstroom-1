@@ -1,0 +1,43 @@
+.track-item {
+    display: table-cell;
+    font-weight: bold;
+    font-size: 14 / 16 + rem;
+    color: $off-white;
+    border-top: 1px solid transparentize($color: $white, $amount: 0.8);
+    padding: 12px 0;
+
+    .track-entry &:first-of-type {
+        padding-left: 50px;
+
+        .form-group {
+            margin: 0 15px 0 0;
+        }
+    }
+
+    .track-entry:last-of-type & {
+        border-bottom: 1px solid transparentize($color: $white, $amount: 0.8);
+    }
+
+    a {
+        color: $off-white;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .form-group {
+        margin: 0 15px 0;
+
+        input {
+            color: $white;
+            background-color: $mine-shaft;
+            border: 0;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
+    }
+}

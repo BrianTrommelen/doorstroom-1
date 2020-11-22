@@ -1,0 +1,42 @@
+@import "information";
+@import "window";
+@import "list";
+@import "card";
+
+.album {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 10px 30px;
+    max-width: calc(25% - 20px);
+
+    &:first-of-type {
+        margin-left: 0;
+        max-width: calc(25% - 20px)
+    }
+
+    &:last-of-type {
+        margin-right: 0;
+        max-width: calc(25% - 20px)
+    }
+
+    &__cover {
+        width: 100%;
+        height: auto;
+        max-width: 250px;
+        max-height: 250px;
+        transition: opacity ease-in-out 0.2s;
+    }
+
+    &__title {
+        @include text-ellipsis(1);
+
+        margin: 20px 0 0;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__artist-link {
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,14 @@
+.album-card {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+
+        .album {
+            &__cover {
+                opacity: 0.3;
+            }
+        }
+    }
+}

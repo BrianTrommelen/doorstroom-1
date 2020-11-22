@@ -1,0 +1,21 @@
+@import "node_modules/bootstrap/scss/modal";
+
+// Make modal fullscreen
+.modal-fullscreen {
+  .modal-dialog {
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100%;
+    padding: 0;
+    width: 100%;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    height: 100%;
+    min-height: 100%;
+    overflow: auto;
+    border: 0;
+  }
+}

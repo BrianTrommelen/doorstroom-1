@@ -1,0 +1,16 @@
+@import "node_modules/bootstrap/scss/bootstrap-reboot";
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -khtml-font-smoothing: antialiased;
+  -apple-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  user-select: none; /* Standard */
+}
+
+img {
+  pointer-events: none;
+}

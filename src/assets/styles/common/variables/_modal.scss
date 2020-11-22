@@ -1,0 +1,7 @@
+$modal-content-bg: $body-bg;
+$modal-header-border-width: 0;
+
+// $modal-fade-transform: scale(0.8);
+$modal-fade-transform: translateY(-100%);
+
+$modal-transition: transform 0.15s ease-out;
